@@ -1,20 +1,18 @@
 <template>
   <v-container fluid>
     <v-row>
-    <v-col sm="12" md="4" ma="2">
+      <v-col sm="12" md="4" ma="2">
         <Profile :profile="profile" />
       </v-col>
-
-          <v-col sm="12" md="8" ma="2">
-            <ScheduleGrid :payPeriod="payPeriod" :schedule="schedule" />
-          </v-col>
+      <v-col sm="12" md="8" ma="2">
+        <ScheduleGrid :payPeriod="payPeriod" :schedule="schedule" />
+      </v-col>
     </v-row>
     <v-row>
-          <v-col sm="12" md="8" offset-md="4" offset-sm="0"  ma="2">
-            <Labor :payPeriod="payPeriod" :labor="labor" />
-          </v-col>
-        </v-row>
-
+      <v-col sm="12" md="8" offset-md="4" offset-sm="0" ma="2">
+        <Labor :payPeriod="payPeriod" :labor="labor" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -94,5 +92,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
