@@ -1,38 +1,50 @@
 <template>
-  <v-card outlined class="scrollable" height="430px">
+  <v-card outlined>
     <v-list-item>
-      <v-list-item-content class="px-1">
-        <div class="overline mb-4">SCHEDULE</div>
+      <v-list-item-content>
+        <v-toolbar flat dense>
+          <v-toolbar-title class="overline">Schedule</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <template>
+            <v-btn icon>
+              <v-icon>mdi-calendar-edit</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-open-in-new</v-icon>
+            </v-btn>
+          </template>
+        </v-toolbar>
+
+        <v-simple-table fixed-header dense>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">Day</th>
+                <th class="text-left">Date</th>
+                <th class="text-center">AWS</th>
+                <th class="text-center">Shift</th>
+                <th class="text-center">Shift Start</th>
+                <th class="text-center">Shift Duration</th>
+                <th class="text-center">Lunch Start</th>
+                <th class="text-center">Lunch Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(day, index) in schedule" v-bind:key="`${'day' + index}`">
+                <td class="text-left">{{formatDay(day.date)}}</td>
+                <td class="text-left">{{formatDate(day.date)}}</td>
+                <td class="text-center">{{day.schedule.alternateWorkSchedule}}</td>
+                <td class="text-center">{{day.schedule.shift}}</td>
+                <td class="text-center">{{day.schedule.shiftStart}}</td>
+                <td class="text-center">{{day.schedule.shiftDuration}}</td>
+                <td class="text-center">{{day.schedule.lunchStart}}</td>
+                <td class="text-center">{{day.schedule.lunchDuration}}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </v-list-item-content>
     </v-list-item>
-    <v-simple-table fixed-header dense height="370px">
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-left">Day</th>
-            <th class="text-left">Date</th>
-            <th class="text-center">AWS</th>
-            <th class="text-center">Shift</th>
-            <th class="text-center">Shift Start</th>
-            <th class="text-center">Shift Duration</th>
-            <th class="text-center">Lunch Start</th>
-            <th class="text-center">Lunch Duration</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(day, index) in schedule" v-bind:key="`${'day' + index}`">
-            <td class="text-left">{{formatDay(day.date)}}</td>
-            <td class="text-left">{{formatDate(day.date)}}</td>
-            <td class="text-center">{{day.schedule.alternateWorkSchedule}}</td>
-            <td class="text-center">{{day.schedule.shift}}</td>
-            <td class="text-center">{{day.schedule.shiftStart}}</td>
-            <td class="text-center">{{day.schedule.shiftDuration}}</td>
-            <td class="text-center">{{day.schedule.lunchStart}}</td>
-            <td class="text-center">{{day.schedule.lunchDuration}}</td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
   </v-card>
 </template>
 
@@ -92,40 +104,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scrollable {
-  overflow: auto;
-}
-
-.schedule {
-  display: grid;
-  grid-template-columns: repeat(7, auto);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-
-  > div {
-    border: 1px solid #888;
-  }
-}
-
-dl {
-  display: grid;
-  grid-template-columns: max-content auto;
-}
-
-dt {
-  font-weight: bold;
-  color: #222;
-  grid-column-start: 1;
-  padding: 5px;
-  text-align: right;
-  &:after {
-    content: ":";
-  }
-}
-
-dd {
-  grid-column-start: 2;
-  padding: 5px 10px 5px 0px;
-}
 </style>

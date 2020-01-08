@@ -6,6 +6,9 @@ Vue.use(Vuex);
 const store = {
   namespaced: true,
   state: {
+    tapUser: {},
+    conopsUser: {},
+    settings: {},
     payPeriods: [
       {
         startDate: "20191222",
@@ -18,10 +21,10 @@ const store = {
     ]
   },
   getters: {
-    employee: state => {
+    tapUser: state => {
       return state.employee;
     },
-    employeeProfile: state => {
+    conopsUser: state => {
       return state.employee.profile;
     }
   },
@@ -33,7 +36,8 @@ const store = {
       this.employee = data.employee;
     }
   },
-  actions: {}
+  actions: {
+  }
 };
 
 export default store;

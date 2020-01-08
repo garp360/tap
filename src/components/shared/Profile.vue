@@ -1,8 +1,19 @@
 <template>
-  <v-card outlined class="scrollable" :height="height">
-    <v-list-item three-line>
-      <v-list-item-content class="px-1">
-        <div class="overline mb-4">PROFILE</div>
+  <v-card outlined>
+    <v-list-item>
+      <v-list-item-content>
+        <v-toolbar flat dense>
+          <v-toolbar-title class="overline">PROFILE</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <template>
+            <v-btn icon>
+              <v-icon>mdi-account-edit-outline</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-open-in-new</v-icon>
+            </v-btn>
+          </template>
+        </v-toolbar>
         <v-list-item-title class="headline mb-1">Sandra Michelle Adams</v-list-item-title>
         <v-list-item-subtitle>
           <dl>
@@ -57,25 +68,30 @@ export default {
       this.windowHeight = window.innerHeight;
     },
     formatTerm(dataTerm) {
-        let formattedTerm = ""
-        if(dataTerm && dataTerm.term && dataTerm.termValue) {
-            formattedTerm = dataTerm.termValue + " - " + dataTerm.term
-        }
-        return formattedTerm
+      let formattedTerm = "";
+      if (dataTerm && dataTerm.term && dataTerm.termValue) {
+        formattedTerm = dataTerm.termValue + " - " + dataTerm.term;
+      }
+      return formattedTerm;
     },
     formatYesNo(booleanValue) {
-        let formattedTerm = "No"
-        if(booleanValue) {
-            fformattedTerm = "Yes"
-        }
-        return formattedTerm
+      let formattedTerm = "No";
+      if (booleanValue) {
+        fformattedTerm = "Yes";
+      }
+      return formattedTerm;
     },
     formatEmployeeName(employee) {
-        let name = employee.firstName + " " + employee.lastName
-        if(employee.middleName) {
-            name = employee.firstName + " "  + employee.middleName + " " + employee.lastName
-        }
-        return name
+      let name = employee.firstName + " " + employee.lastName;
+      if (employee.middleName) {
+        name =
+          employee.firstName +
+          " " +
+          employee.middleName +
+          " " +
+          employee.lastName;
+      }
+      return name;
     }
   },
   computed: {
