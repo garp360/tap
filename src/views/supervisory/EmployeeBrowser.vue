@@ -1,14 +1,15 @@
 <template>
   <v-container fluid>
-    <v-card outlined :height="height">
-      <v-toolbar flat dense>
+
+        <v-row no-gutters>
+          <v-col cols="4">
+            <v-card outlined tile class="scrollable" :height="height">
+                <v-toolbar flat dense>
         <v-toolbar-title>Employee Browsers</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
-      <v-container fluid>
-        <v-row no-gutters>
-          <v-col cols="4">
-            <v-card outlined tile class="scrollable" :height="height2">
+            <v-card flat class="scrollable" :height="height2">
+                
               <v-list>
                 <v-list-item-group v-model="item" color="primary">
                   <v-list-item v-for="item in items" :inactive="false" :key="item.title" @click>
@@ -33,15 +34,19 @@
                 </v-list-item-group>
               </v-list>
             </v-card>
+            </v-card>
           </v-col>
           <v-col>
-            <v-card outlined tile class="scrollable" :height="height2">
+            <v-card outlined tile class="scrollable ml-2" :height="height">
+                <v-toolbar flat dense>
+        <v-toolbar-title>Employee Browsers</v-toolbar-title>
+        <v-spacer></v-spacer>
+      </v-toolbar>
               <Profile />
             </v-card>
           </v-col>
         </v-row>
-      </v-container>
-    </v-card>
+
   </v-container>
 </template>
 
@@ -586,7 +591,7 @@ export default {
       return h + "px";
     },
     height2: function() {
-      let h = this.windowHeight - 205;
+      let h = this.windowHeight - 180;
       console.log("h = " + h);
       return h + "px";
     }
