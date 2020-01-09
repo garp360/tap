@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row>
+    <v-row dense>
       <v-col>
         <v-card outlined>
           <v-list-item>
@@ -14,37 +14,56 @@
                   </v-btn>
                 </template>
               </v-toolbar>
+              <v-divider />
               <v-container fluid>
-                <v-row>
-                  <v-col>
-                    <v-text-field label="Employee Number" outlined dense></v-text-field>
-                  </v-col>
-                  <v-col>
-                    <v-text-field label="Social Security Number" outlined dense></v-text-field>
-                  </v-col>
-                  <v-spacer />
-                  <v-spacer />
-                </v-row>
-                <v-row no-gutters>
-                  <v-col xs="12">
-                    <v-checkbox v-model="checkbox1" label="Reports to External Entity"></v-checkbox>
-                  </v-col>
-                </v-row>
-                <v-row no-gutters>
-                  <v-col xs="3" sm="3" md="2" lg="2" xl="1">
-                    <v-text-field label="Personnel Number" outlined dense></v-text-field>
-                  </v-col>
-                  <v-col cols="1">-OR-</v-col>
-                  <v-col xs="3" sm="3" md="2" lg="2" xl="1">
-                    <v-autocomplete
-                      v-model="values"
-                      :items="items"
-                      outlined
-                      dense
-                      label="Supervisor"
-                    ></v-autocomplete>
-                  </v-col>
-                </v-row>
+                <form autocomplete="false">
+                  <v-row dense>
+                    <v-col>
+                      <v-text-field label="Employee Number" outlined></v-text-field>
+                    </v-col>
+                    <v-col>
+                      <v-checkbox class="mt-3 pl-6" label="Is a Supervisor" indeterminate></v-checkbox>
+                    </v-col>
+                    <v-spacer />
+                    <v-spacer />
+                  </v-row>
+                  <v-row dense>
+                    <v-col>
+                      <v-text-field label="Social Security Number" outlined></v-text-field>
+                    </v-col>
+                    <v-spacer />
+                    <v-spacer />
+                    <v-spacer />
+                  </v-row>
+                  <v-row dense>
+                    <v-col>
+                      <v-text-field label="First Name" outlined></v-text-field>
+                      <v-checkbox class="mt-3" label="Reports to External Entity" indeterminate></v-checkbox>
+                    </v-col>
+                    <v-col>
+                      <v-text-field label="Middle Name" outlined></v-text-field>
+                    </v-col>
+                    <v-col>
+                      <v-text-field label="Last Name" outlined></v-text-field>
+                    </v-col>
+                    <v-spacer />
+                  </v-row>
+                  <v-row dense>
+                    <v-col>
+                      <v-text-field class="pl-8" label="Personnel Number" outlined></v-text-field>
+                      <v-autocomplete
+                        v-model="values"
+                        :items="['36089 - Mitchell J. Tribisky', '84994 - Peyton R. Manning', '92873 - John K. Elway']"
+                        outlined
+                        label="Supervisor"
+                        class="pl-8"
+                      ></v-autocomplete>
+                    </v-col>
+                    <v-spacer />
+                    <v-spacer />
+                    <v-spacer />
+                  </v-row>
+                </form>
               </v-container>
             </v-list-item-content>
           </v-list-item>

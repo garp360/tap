@@ -1,72 +1,645 @@
 <template>
-  <div class="parent">
-    <div class="col1">
-      <v-card outlined>
-        <v-toolbar dense flat>
-          <v-toolbar-title>Employee Browsers</v-toolbar-title>
-          <v-spacer></v-spacer>
-        </v-toolbar>
+  <v-container fluid>
+    <v-card outlined :height="height">
+      <v-toolbar flat dense>
+        <v-toolbar-title>Employee Browsers</v-toolbar-title>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+      <v-container fluid>
+        <v-row no-gutters>
+          <v-col cols="4">
+            <v-card outlined tile class="scrollable" :height="height2">
+              <v-list>
+                <v-list-item-group v-model="item" color="primary">
+                  <v-list-item v-for="item in items" :inactive="false" :key="item.title" @click>
+                    <v-list-item-content>
+                      <v-list-item-title v-text="`${'34554 - ' + item.title}`"></v-list-item-title>
+                      <v-list-item-subtitle>
+                        asdjdasjd
 
-        <v-divider></v-divider>
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+    
 
-        <v-card-actions>
-          <v-btn class="ma-2" outlined color="primary" large>Clock It!</v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
-    <div class="col2"></div>
-  </div>
+                    
+                    <v-list-item-icon>
+          <v-icon color="deep-purple accent-4">mdi-information</v-icon>
+          <v-icon color="deep-purple accent-4">mdi-information</v-icon>
+          <v-icon color="deep-purple accent-4">mdi-information</v-icon>
+          <v-icon color="deep-purple accent-4">mdi-information</v-icon>
+          <v-icon color="deep-purple accent-4">mdi-information</v-icon>
+        </v-list-item-icon>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-card>
+          </v-col>
+          <v-col>
+            <v-card outlined tile class="scrollable" :height="height2">
+              <Profile />
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
+import moment from "moment";
+
+import Profile from "@/components/shared/Profile.vue";
+
 export default {
+  components: {
+    Profile
+  },
+  props: {
+    payPeriod: {
+      type: Object,
+      required: function() {
+        return true;
+      }
+    },
+    schedule: {
+      type: Array,
+      required: function() {
+        return true;
+      }
+    }
+  },
   data() {
     return {
-      labels: ["SU", "MO", "TU", "WED", "TH", "FR", "SA"],
-      time: 0,
-      forecast: [
+      windowHeight: 0,
+      items: [
         {
-          day: "Tuesday",
-          icon: "mdi-white-balance-sunny",
-          temp: "24\xB0/12\xB0"
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
         },
         {
-          day: "Wednesday",
-          icon: "mdi-white-balance-sunny",
-          temp: "22\xB0/14\xB0"
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
         },
-        { day: "Thursday", icon: "mdi-cloud", temp: "25\xB0/15\xB0" }
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        },
+        {
+          icon: true,
+          title: "Jason Oner",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        },
+        {
+          title: "Travis Howard",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        },
+        {
+          title: "Ali Connors",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        },
+        {
+          title: "Cindy Baker",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        }
       ]
     };
+  },
+  methods: {
+    onResize() {
+      this.windowHeight = window.innerHeight;
+    },
+    formatDay(date) {
+      return moment(date).format("dddd");
+    },
+    formatDate(date) {
+      return moment(date).format("MMM/D");
+    }
+  },
+  computed: {
+    height: function() {
+      let h = this.windowHeight - 127;
+      console.log("h = " + h);
+      return h + "px";
+    },
+    height2: function() {
+      let h = this.windowHeight - 205;
+      console.log("h = " + h);
+      return h + "px";
+    }
+  },
+
+  beforeMount() {
+    this.$nextTick(() => {
+      this.onResize();
+      window.addEventListener("resize", this.onResize);
+    });
+  },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
   }
 };
 </script>
 
-
 <style lang="scss" scoped>
-.parent {
-  display: grid;
-
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+.scrollable {
+  overflow: auto;
 }
 
-.parent {
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+.schedule {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
 
-  .col1 {
-    padding: 10px;
-    grid-area: 1 / 1 / 2 / 2;
+  > div {
+    border: 1px solid #888;
   }
-  .col2 {
-    position: relative;
-    grid-area: 1 / 2 / 2 / 3;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+dt {
+  font-weight: bold;
+  color: #222;
+  grid-column-start: 1;
+  padding: 5px;
+  text-align: right;
+  &:after {
+    content: ":";
   }
+}
+
+dd {
+  grid-column-start: 2;
+  padding: 5px 10px 5px 0px;
 }
 </style>
